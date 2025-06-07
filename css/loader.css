@@ -1,0 +1,84 @@
+.loader-container{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+.loader {
+    width: 300px;
+    padding: 2rem;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.status-text {
+    text-align: center;
+    color: #334155;
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.progress-container {
+    background: #f1f5f9;
+    height: 4px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #3b82f6, #6366f1);
+    border-radius: 8px;
+    transition: width 0.3s ease;
+}
+
+.loading-icons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    color: #64748b;
+}
+
+.icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: #f1f5f9;
+    opacity: 0.3;
+    transition: all 0.3s ease;
+}
+
+.icon.active {
+    opacity: 1;
+    background: #eff6ff;
+    color: #3b82f6;
+}
+
+.percentage {
+    text-align: center;
+    font-size: 1rem;
+    color: #334155;
+    font-weight: 600;
+}
+
+/* Icônes stylisées */
+.icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}

@@ -1,0 +1,110 @@
+.dropzone {
+    width: 90%;
+    max-width: 1200px;
+    height: 150px;
+    border: 2px dashed #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: start; /* Aligne les fichiers à gauche */
+    flex-wrap: nowrap;
+    padding: 10px;
+    gap: 15px;
+    overflow-x: auto;
+    position: relative;
+    margin: 20px auto;
+    border-radius: 10px;
+    transition: height 0.3s ease;
+}
+
+.dropzone .placeholder {
+    position: absolute;
+    color: #ccc;
+    font-size: 16px;
+    transition: opacity 0.3s ease;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.file {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    min-width: 100px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.file img {
+    width: 50px;
+    height: 50px;
+}
+
+.file span {
+    font-size: 12px;
+    text-align: center;
+    margin-top: 5px;
+}
+
+/* Poubelle jolie avec l'icône FontAwesome */
+.delete-btn {
+    position: absolute;
+    width: 30px !important;
+    height: 30px !important;
+    bottom: -35px;
+    right: -10px;
+    background: red;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.delete-btn:hover {
+    background: tomato;
+}
+
+
+/* Animation de suppression */
+.file.removing {
+    transform: translateY(30px);
+    opacity: 0;
+}
+
+
+.button-container {
+    display: flex; /* Active le modèle de boîte flexible */
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+
+}
+
+#btn-validation {
+    
+    background-color: #007BFF; /* Couleur de fond (bleu) */
+    color: #fff; /* Couleur du texte (blanc) */
+    font-size: 16px; /* Taille de la police */
+    font-weight: bold; /* Texte en gras */
+    padding: 10px 20px; /* Espacement intérieur */
+    border: none; /* Supprime les bordures */
+    border-radius: 25px; /* Coins arrondis */
+    cursor: pointer; /* Curseur de pointeur */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre pour un effet 3D */
+    transition: all 0.3s ease; /* Transition fluide pour les effets */
+}
+
+#btn-validation:hover {
+    background-color: #0056b3; /* Couleur au survol (bleu foncé) */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Ombre plus forte */
+    transform: scale(1.05); /* Légère augmentation de taille */
+}
+
+#btn-validation:active {
+    background-color: #003d80; /* Couleur lors du clic */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Ombre réduite */
+    transform: scale(0.95); /* Légère réduction de taille */
+}

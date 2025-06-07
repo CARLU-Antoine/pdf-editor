@@ -1,0 +1,142 @@
+
+.settings-panel {
+    position: fixed;
+    z-index: 2000;
+    right: -350px;
+    top: 0;
+    width: 350px;
+    height: 100%;
+    background: #f8f9fa;
+    box-shadow: -2px 0 8px rgba(0,0,0,0.1);
+    transition: right 0.3s ease;
+}
+
+.settings-panel.open {
+    right: 0;
+}
+
+.panel-header {
+    padding: 15px;
+    background: #fff;
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.panel-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #666;
+}
+
+details {
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Supprime complètement le marker par défaut */
+details > summary {
+    display: block;
+}
+
+details > summary::-webkit-details-marker,
+details > summary::marker {
+    display: none;
+}
+
+summary {
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #2c3e50;
+    transition: all 0.3s ease;
+    list-style: none;
+    position: relative;
+}
+
+/* Créer un nouveau triangle personnalisé - maintenant caché par défaut */
+summary::after {
+    content: '';
+    position: absolute;
+    right: 10px;
+    transform: rotate(0);
+    transition: transform 0.3s ease;
+}
+
+/* Afficher le triangle seulement au survol */
+summary:hover::after {
+    content: '▼';
+}
+
+/* Rotation du triangle quand ouvert */
+details[open] summary::after {
+    content: '▼';
+    transform: rotate(180deg);
+}
+
+summary:hover {
+    color: #3498db;
+}
+
+/* Animation pour le contenu */
+details[open] > *:not(summary) {
+    animation: details-show 0.3s ease-in-out;
+}
+
+@keyframes details-show {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.toggle-button {
+    padding: 8px 12px;
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+.toggle-button:hover {
+    background: #f8f9fa;
+}
+
+/* Style pour les options de personnalisation */
+.option-group {
+    margin-bottom: 12px;
+}
+
+.option-label {
+    display: block;
+    margin-bottom: 6px;
+    color: #555;
+}
+
+select, input {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.color-picker{
+    display: none;
+}

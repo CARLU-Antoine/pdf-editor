@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyse et Conversion PDF</title>
+    <link rel="stylesheet" href="../css/panel-page.css">
+    <link rel="stylesheet" href="../css/dropzone.css">
+    <link rel="stylesheet" href="../css/onglets.css">
+    <link rel="stylesheet" href="../css/panel.css">
+    <link rel="stylesheet" href="../css/loader.css">
+    <link rel="stylesheet" href="../css/multiselect.css">
+    <link rel="stylesheet" href="../css/menu-word-modification.css">
+    <link rel="stylesheet" href="../css/table.css">
+    <script src="../librairies/pdf.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="dropzone" id="dropzone">
+            <span class="placeholder">Déposez vos fichiers ici</span>
+        </div>
+
+        <div class="loader-container">
+            <div class="loader">
+                <div class="loading-icons">
+                    <div class="icon" id="icon1">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </div>
+                    <div class="icon" id="icon2">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                        </svg>
+                    </div>
+                    <div class="icon" id="icon3">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="status-text">Chargement des données...</div>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress"></div>
+                </div>
+                <div class="percentage">0%</div>
+            </div>
+        </div>  
+
+        <div class="button-container">
+            <button id="btn-validation">Valider</button>
+        </div>
+
+        <div class="multiselect-container" id="multiselect-files">
+            <div class="select-box">
+                <div class="placeholder">Sélectionner un ou plusieurs PDF ...</div>
+            </div>
+            <div class="dropdown-list">
+                <input type="text" class="search-box" placeholder="Rechercher">
+                <div class="options">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="tabs-container">
+            <div class="settings-panel" id="settingsPanel">
+                <div class="panel-header">
+                    <span class="panel-title">Personnalisation PDF</span>
+                    <button class="close-btn" onclick="togglePanel()">×</button>
+                </div>
+                
+                <details>
+                    <summary>Créer un élément</summary>
+                    <div class="editor-container">
+                        <div class="toolbar">
+                
+                            <button id="btn-creation-tableau"><b>Tableau</b></button>
+                            <button id="btn-creation-image"><b>Image</b></button>
+                            <input type="file" id="file-input" style="display: none;" accept="image/*" />
+                            <button id="btn-text-texte"><b>Texte</b></button>
+                                                                                      
+                        </div>
+            
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>Rechercher un pattern particulier</summary>
+                    <div class="details-content">
+                        <input type="text" id="inputPattern" placeholder="Entrez un pattern">
+                        <button id="btn-search-pattern">Rechercher</button>
+                    </div>
+                    <table >
+                        <thead>
+                            <tr>
+                                <th>Page</th>
+                                <th>Texte</th>
+                            </tr>
+                    </table>
+                </details>
+    
+                <details>
+                    <summary>Format du document</summary>
+                    <div class="details-content">
+                        <div class="option-group">
+                            <label class="option-label">Format de page</label>
+                            <select id="select-format">
+                                <option>A4</option>
+                                <option>A3</option>
+                                <option>A5</option>
+                                <option>Letter</option>
+                            </select>
+                        </div>
+                        <div class="option-group">
+                            <label class="option-label">Orientation</label>
+                            <select id="select-orientation">
+                                <option>Portrait</option>
+                                <option>Paysage</option>
+                            </select>
+                        </div>
+                    </div>
+                </details>
+    
+    
+            </div>
+            <div class="tabs">
+            </div>
+            <div class="content">
+            </div>
+
+            <div class="viewer-controls">
+                <div class="page-controls">
+                    <button id="prevPage" class="nav-btn" title="Page précédente">❮</button>
+                    <span id="pageInfo">
+                        Page <input id="pageInput" type="number" min="1" value="0" style="width: 50px; text-align: center;" /> / 
+                        <span id="totalPages">0</span>
+                    </span>
+                    <button id="nextPage" class="nav-btn" title="Page suivante">❯</button>
+                </div>
+                <div class="zoom-controls">
+                    <button class="toggle-button" id="btn-ajout-page"> + page</button>
+                    <button class="toggle-button" id="btn-suppression-page"> - page</button>
+                    <button id="zoomOut" title="Zoom arrière">−</button>
+                    <span id="zoomLevel">0%</span>
+                    <button id="zoomIn" title="Zoom avant">+</button>
+                    <button id="fullScreen" title="Plein écran">⤢</button>
+                    <img id="btn-telechargement-pdf" src="../asset/file-arrow-down-solid.svg"></img>
+                    <button class="toggle-button" onclick="togglePanel()">⚙️ Paramètres PDF</button>
+                </div>
+            </div>
+
+            <div class="word-toolbar" id="wordToolbar">
+                <!-- Rangée supérieure -->
+                <div class="top-row">
+                    <!-- Sélecteur de police -->
+                    <div class="font-select-container">
+                        <select class="font-select" id="fontSelect">
+                            <option value="Helvetica">Helvetica</option>
+                            <option value="Arial">Arial</option>
+                            <option value="Times New Roman">Times New Roman</option>
+                            <option value="Calibri">Calibri</option>
+                            <option value="Georgia">Georgia</option>
+                            <option value="Verdana">Verdana</option>
+                        </select>
+                    </div>
+        
+                    <!-- Sélecteur de taille -->
+                    <div class="size-select-container">
+                        <select class="size-select" id="sizeSelect">
+                            <option value="1">8</option>
+                            <option value="2">9</option>
+                            <option value="3">10</option>
+                            <option value="4">11</option>
+                            <option value="5" selected>11,5</option>
+                            <option value="6">12</option>
+                            <option value="7">14</option>
+                        </select>
+                    </div>
+        
+                    <!-- Boutons de taille -->
+                    <div class="font-size-buttons">
+                        <button class="text-button size-up" id="sizeUpButton" title="Augmenter la taille">A<sup>+</sup></button>
+                        <button class="text-button size-down" id="sizeDownButton" title="Diminuer la taille">A<sup>-</sup></button>
+                    </div>
+        
+                    <!-- Effacer la mise en forme -->
+                    <button class="text-button paint-icon" id="clearFormatButton" title="Effacer la mise en forme">🧹</button>
+                </div>
+        
+                <!-- Rangée inférieure -->
+                <div class="bottom-row">
+                    <!-- Formatage de texte -->
+                    <button class="text-button bold-button" id="boldButton" title="Gras">G</button>
+                    <button class="text-button italic-button" id="italicButton" title="Italique">I</button>
+                    <button class="text-button underline-button" id="underlineButton" title="Souligné">S</button>
+        
+                    <!-- Couleurs -->
+                    <div class="text-button color-button text-color" id="textColorButton" title="Couleur du texte">
+                        <input type="color" id="textColorInput" title="Choisir une couleur">
+                    </div>
+        
+                    <div class="text-button color-button highlight-color" id="highlightButton" title="Surlignage">
+                        <input type="color" id="highlightColorInput" title="Choisir une couleur de surlignage">
+                    </div>
+        
+                    <div class="separator"></div>
+        
+                    <!-- Listes -->
+                    <button class="text-button bulletlist-icon" id="bulletListButton" title="Liste à puces">•</button>
+                    <button class="text-button numberedlist-icon" id="numberedListButton" title="Liste numérotée">1</button>
+        
+                    <!-- Indentation -->
+                    <button class="text-button outdent-icon" id="outdentButton" title="Diminuer le retrait">←</button>
+                    <button class="text-button indent-icon" id="indentButton" title="Augmenter le retrait">→</button>
+        
+                    <div class="separator"></div>
+        
+                    <!-- Styles -->
+                    <button class="styles-button" id="stylesButton" title="Styles">
+                        Styles
+                        <!-- Menu déroulant de styles -->
+                        <div class="styles-dropdown" id="stylesDropdown">
+                            <div class="style-option" data-style="p">Normal</div>
+                            <div class="style-option" data-style="h1">Titre 1</div>
+                            <div class="style-option" data-style="h2">Titre 2</div>
+                            <div class="style-option" data-style="h3">Titre 3</div>
+                            <div class="style-option" data-style="blockquote">Citation</div>
+                            <div class="style-option" data-style="pre">Code</div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="../PDF/controls.js"></script>
+    <script src="../PDF/edition.js"></script>
+    <script src="../PDF/traitement_pdf.js"></script>
+    <script src="../js/dropzone.js"></script>
+    <script src="../js/onglets.js"></script>
+    <script src="../js/loader.js"></script>
+    <script src="../js/multiselect.js"></script>
+    <script src="../PDF/creation.js"></script>
+    <script src="../js/menu-word.js"></script>
+</body>
+</html>

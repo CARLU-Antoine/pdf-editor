@@ -1,0 +1,184 @@
+.tabs-container {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+body.fullscreen .tabs-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background-color: #fff;
+}
+
+
+.tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    gap: 0.125rem;
+    margin-bottom: -1px;
+    position: relative;
+    z-index: 2;
+    overflow: auto;
+}
+
+.tab {
+    padding: 15px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-bottom: none;
+    border-radius: 0.5rem 0.5rem 0 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #64748b;
+    font-size: 0.875rem;
+    position: relative;
+    bottom: -1px;
+}
+
+.tab:hover {
+    background: #fff;
+    color: #1e293b;
+}
+
+.tab.active {
+    background: white;
+    color: #2563eb;
+    border-color: #e2e8f0;
+    border-bottom: 1px solid white;
+    font-weight: 500;
+}
+
+.pdf-icon {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    background: url("https://cdn-icons-png.flaticon.com/512/337/337946.png") no-repeat center center;
+    background-size: contain;
+}
+
+
+
+.content {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 0 0.5rem 0.5rem 0.5rem;
+    padding: 1.5rem;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.panel {
+    display: none;
+}
+
+.panel.active {
+    display: block;
+}
+
+.file-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.file-info:hover {
+    border-color: #cbd5e1;
+    background: #f1f5f9;
+}
+
+.file-info-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.file-icon-large {
+    width: 2rem;
+    height: 2rem;
+    background: #64748b;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512'%3E%3Cpath d='M320 464c8.8 0 16-7.2 16-16V160H256c-17.7 0-32-14.3-32-32V48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320zM0 64C0 28.7 28.7 0 64 0H229.5c17 0 33.3 6.7 45.3 18.7l90.5 90.5c12 12 18.7 28.3 18.7 45.3V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64z'/%3E%3C/svg%3E") no-repeat center center;
+    mask-size: contain;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512'%3E%3Cpath d='M320 464c8.8 0 16-7.2 16-16V160H256c-17.7 0-32-14.3-32-32V48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320zM0 64C0 28.7 28.7 0 64 0H229.5c17 0 33.3 6.7 45.3 18.7l90.5 90.5c12 12 18.7 28.3 18.7 45.3V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64z'/%3E%3C/svg%3E") no-repeat center center;
+    -webkit-mask-size: contain;
+}
+
+.file-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.file-name {
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.file-meta {
+    color: #64748b;
+    font-size: 0.75rem;
+}
+
+.download-btn {
+    padding: 0.5rem 1rem;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.download-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.download-btn:active {
+    transform: translateY(0);
+}
+
+
+
+
+/* A4 Portrait */
+.a4-portrait {
+    width: 210mm;
+    height: 297mm;
+}
+
+/* A4 Paysage */
+.a4-landscape {
+    width: 297mm;
+    height: 210mm;
+}
+
+/* A3 Portrait */
+.a3-portrait {
+    width: 297mm;
+    height: 420mm;
+}
+
+/* A3 Paysage */
+.a3-landscape {
+    width: 420mm;
+    height: 297mm;
+}

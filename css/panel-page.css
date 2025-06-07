@@ -1,0 +1,131 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.viewer-controls {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    z-index: 1000;
+    max-width: 875px;
+    width: 100%;
+    border-top: 1px solid #eaeaea;
+    border-radius: 12px 12px 0 0;
+}
+.page-controls, .zoom-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-btn {
+    background: transparent;
+    border: 1px solid #e0e0e0;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 18px;
+    color: #666;
+}
+
+.nav-btn:hover {
+    background: #f5f5f5;
+    color: #333;
+}
+
+.nav-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#pageInfo {
+    font-size: 14px;
+    color: #666;
+    min-width: 100px;
+    text-align: center;
+}
+
+.zoom-controls button {
+    background: transparent;
+    border: 1px solid #e0e0e0;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #666;
+}
+
+.zoom-controls button:first-child {
+    border-radius: 18px 0 0 18px;
+}
+
+.zoom-controls button:last-child {
+    border-radius: 0 18px 18px 0;
+}
+
+#zoomLevel {
+    padding: 8px 12px;
+    background: #f5f5f5;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    color: #666;
+    font-size: 14px;
+    min-width: 70px;
+    text-align: center;
+}
+
+#fullScreen {
+    background: transparent;
+    border: 1px solid #e0e0e0;
+    border-radius: 18px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-left: 10px;
+}
+
+.zoom-controls button:hover,
+#fullScreen:hover {
+    background: #f5f5f5;
+    color: #333;
+}
+
+#pageInput {
+    width: 50px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 2px;
+    font-size: 14px;
+}
+
+
+#btn-telechargement-pdf{
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+}
